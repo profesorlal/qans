@@ -4,7 +4,7 @@ from pydantic import BaseModel
 import uvicorn
 import secrets
 import asyncio
-
+import httpx
 app = FastAPI()
 
 class Model(BaseModel):
@@ -107,4 +107,5 @@ async def groq_chat(request: GroqRequest):
 
 if __name__ == "__main__":
     uvicorn.run("TST:app", host="0.0.0.0", port=8000)
+
 
