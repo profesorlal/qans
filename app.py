@@ -4,7 +4,6 @@ from pydantic import BaseModel
 import uvicorn
 import secrets
 import asyncio
-import httpx
 
 app = FastAPI()
 
@@ -100,7 +99,7 @@ async def groq_chat(request: GroqRequest):
         try:
             response = await client.post(url, headers=headers, json=data, timeout=60.0)
             response.raise_for_status()
-            return response.json()["choices"][0]["message"]["content"]
+            return response.json()
         except httpx.HTTPStatusError as e:
             return {"status": "error", "message": f"HTTP error: {e.response.status_code}", "details": e.response.text}
         except Exception as e:
@@ -108,3 +107,4 @@ async def groq_chat(request: GroqRequest):
 
 if __name__ == "__main__":
     uvicorn.run("TST:app", host="0.0.0.0", port=8000)
+
