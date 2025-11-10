@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-import uvicorn
 import secrets
 import asyncio
 
@@ -49,6 +48,7 @@ async def get_code():
 
 if __name__ == "__main__":
     uvicorn.run("TST:app", host="0.0.0.0", port=8000)
+
 
 
 
